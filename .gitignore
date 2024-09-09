@@ -64,3 +64,4 @@ NUnit-Frame-Report
 NUnit-NoFrame-Report
 Mock-Frame-Report
 Mock-NoFrame-Report
+/src/.vs

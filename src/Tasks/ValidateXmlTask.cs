@@ -59,6 +59,17 @@ namespace NAnt.Contrib.Tasks {
         #region Public Instance Properties
 
         /// <summary>
+        /// Report warnings as errors.
+        /// </summary>
+        [TaskAttribute("failonwarn")]
+        [BooleanValidator]
+        public bool FailOnWarn
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// The XML files that must be validated.
         /// </summary>
         [BuildElement("files", Required=true)]
@@ -157,6 +168,10 @@ namespace NAnt.Contrib.Tasks {
                 case XmlSeverityType.Warning:
                     // output error message
                     Log(Level.Info, "Validation warning: {0}", args.Message);
+                    if (this.FailOnWarn)
+                    {
+                        _numErrors++;
+                    }
                     break;
             }
         }
